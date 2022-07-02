@@ -1,4 +1,15 @@
-function LegendaryModel(id, name, description, type, healthPoints, specialAttack, defense, attack, experience, specialDefense) {
+function LegendaryModel(
+  id,
+  name,
+  description,
+  type,
+  healthPoints,
+  specialAttack,
+  defense,
+  attack,
+  experience,
+  specialDefense
+) {
   this.id = id;
   this.name = name;
   this.description = description;
