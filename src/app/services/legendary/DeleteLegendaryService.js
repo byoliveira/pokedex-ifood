@@ -1,4 +1,4 @@
-const ListLegendariesService = require("./ListLegendariesService")
+const ListLegendariesService = require("../../services/legendary/ListLegendariesService")
 
 const DeleteLegendaryService = {
   delete: (id) => {
