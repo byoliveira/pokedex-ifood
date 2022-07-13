@@ -1,4 +1,4 @@
-const LegendaryModel = require('../models/LegendaryModel');
+const LegendaryModel = require('../../models/legendary/LegendaryModel');
 
 const ListLegendariesService = {
   listLegendariesService: () => {
