@@ -1,6 +1,7 @@
 const Router = require('express');
 const multer = require('multer');
-const multerConfig = require('./config/multer')
+const multerConfig = require('./config/multer');
+const legendaryValidator = require('./middlewares/LegendaryValidator')
 
 const controller = require('./app/controllers/legendary/LegendaryController');
 const trainerController = require('./app/controllers/trainer/TrainerController')
@@ -12,7 +13,7 @@ const routes = new Router();
 
 //routes.get('/legendaries', controller.index);
 routes.get('/legendaries', controller.ListData);
-routes.post('/legendaries', controller.create);
+routes.post('/legendaries',legendaryValidator, controller.create);
 routes.put('/legendaries/:id', controller.update);
 routes.delete('/legendaries/:id', controller.delete);
 
