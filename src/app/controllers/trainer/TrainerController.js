@@ -15,18 +15,6 @@ const controller = {
       city
     } = request.body
 
-    if (!name) {
-      return response.status(400).json({
-        message: "Nome é obrigatório"
-      })
-    }
-
-    if (!age) {
-      return response.status(400).json({
-        message: "Idade é obrigatório"
-      })
-    }
-
     const createdTrainer = CreateTrainerService.create(name, age, city)
 
     if (!createdTrainer.sucess) {
