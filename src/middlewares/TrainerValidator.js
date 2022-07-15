@@ -29,11 +29,11 @@ async function TrainerValidator(request, response, next) {
   //   })
   // }
 
-  // schema.validate({ name, age, city }).catch(err => {
-  //   return response.status(400).json({
-  //     message: err.errors
-  //   })
-  // })
+  schema.validate({ name, age, city }).catch(err => {
+    return response.status(400).json({
+      message: err.errors
+    })
+  })
 
   // try {
   //   await schema.validate({ name, age, city })
