@@ -19,15 +19,21 @@ const legendaryValidatorList = [
 const yup = require('yup');
 
 async function legendaryValidator(request, response, next) {
-  const schema =  yup.object().shape({
+  const schema = yup.object().shape({
     name: yup.string().required('Name é obrigatório'),
     type: yup.string().required('Type é obrigatório'),
-    description: yup.string().required().min(10)
+    description: yup.string().required().min(10),
   })
 
-   if(! (await schema.isValidSync(request.body))) {
-    return response.status(400).json({error: 'Não foi possível cadastrar o legendary, verifique os campos obrigatório!'})
-  } 
+  // if (!(await schema.isValidSync(request.body))) {
+  //   return response.status(400).json({ error: 'Não foi possível cadastrar o legendary, verifique os campos obrigatório!' })
+  // }
+
+  await schema.validate(request.body).catch(err => {
+    return response.status(400).json({
+      error: err.errors
+    })
+  });
 
   next();
 }
