@@ -12,7 +12,7 @@ const CreateTrainerService = {
       return createdTrainer
     }
 
-    if (age < 15 || age >= 40) {
+    /* if (age < 15 || age >= 40) {
       return {
         sucess: false,
         message: "Somente maiores de 15 e menores de 40 anos podem participar"
@@ -24,7 +24,7 @@ const CreateTrainerService = {
         sucess: false,
         message: "Somente moradores de Pallet e Vermelion podem participar"
       }
-    }
+    } */
 
     const newTrainer = new TrainerModel(v4(), name, age, city)
 

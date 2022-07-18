@@ -7,6 +7,7 @@ const trainerValidator = require('./middlewares/TrainerValidator')
 const controller = require('./app/controllers/legendary/LegendaryController');
 const trainerController = require('./app/controllers/trainer/TrainerController')
 const uploadFileController = require('./app/controllers/utils/UploadFileController');
+const TrainerValidator = require('./middlewares/TrainerValidator')
 
 const uploadFile = multer({ storage: multerConfig })
 
@@ -19,7 +20,7 @@ routes.put('/legendaries/:id', controller.update);
 routes.delete('/legendaries/:id', controller.delete);
 
 routes.get('/trainers', trainerController.listAll);
-routes.post('/trainers', trainerValidator, trainerController.create);
+routes.post('/trainers', TrainerValidator, trainerController.create);
 routes.put('/trainers/:id', trainerController.update);
 
 routes.post('/uploads', uploadFile.single('file'), uploadFileController.storeFile);

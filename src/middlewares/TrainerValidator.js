@@ -1,47 +1,22 @@
+/* Daniel Filho,
+Jackson Oliveira,
+Lilian Lucena */
+
 const yup = require('yup')
 
 async function TrainerValidator(request, response, next) {
-  const {
-    name,
-    age,
-    city
-  } = request.body
 
   const schema = yup.object().shape({
-    name: yup.string().required('Name é obrigatório'),
-    age: yup.number().required().positive(),
-    city: yup.string().required()
+    name: yup.string().strict().required('Name é obrigatório').min(10).typeError("Nome deve ser string."),
+    age: yup.number().strict().typeError("Idade deve ser número"),
+    city: yup.string().strict().required().min(10).typeError("Cidade deve ser string.")
   })
 
-  // schema.isValid({
-  //   name,
-  //   age,
-  //   city
-  // }).then(resposta => {
-  //   console.log(resposta)
-  // })
-
-  // const isValid = await schema.isValid({ name, age, city })
-
-  // if (!isValid) {
-  //   return response.status(400).json({
-  //     message: "Deu problema"
-  //   })
-  // }
-
-  await schema.validate({ name, age, city }).catch(err => {
+  await schema.validate(request.body).catch(err => {
     return response.status(400).json({
       message: err.errors
     })
   })
-
-  // try {
-  //   await schema.validate({ name, age, city })
-  // } catch (err) {
-  //   return response.status(400).json({
-  //     message: err.errors
-  //   })
-  // }
 
   next()
 }
