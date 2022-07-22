@@ -10,13 +10,9 @@ const SessionController = {
     const trainer = ListTrainerService.FindTrainer(email, password)
 
 
-  /*   if(trainerIndex < 0) {
+  if(!trainer) {
       return response.status(401).json({error: 'Trainer not found'})
     }
-
-    if(trainer[trainerIndex].password !== password) {
-      return response.status(401).json({error: 'Invalid password'})
-    } */
 
     const {id, name} = trainer;
 
