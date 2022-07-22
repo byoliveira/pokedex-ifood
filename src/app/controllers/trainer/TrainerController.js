@@ -11,6 +11,8 @@ const controller = {
   create: (request, response) => {
     const {
       name,
+      email,
+      password,
       age,
       city
     } = request.body
@@ -27,7 +29,7 @@ const controller = {
       })
     }
 
-    const createdTrainer = CreateTrainerService.create(name, age, city)
+    const createdTrainer = CreateTrainerService.create(name, email, password, age, city)
 
     if (!createdTrainer.sucess) {
       return response.status(400).json(createdTrainer.message)
