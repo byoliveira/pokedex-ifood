@@ -2,7 +2,7 @@ const { v4 } = require('uuid')
 const TrainerModel = require('../../models/trainer/TrainerModel')
 
 const CreateTrainerService = {
-  create: (name, age, city) => {
+  create: (name, email, password, age, city) => {
     if (name.length < 5) {
       const createdTrainer = {
         sucess: false,
@@ -17,16 +17,9 @@ const CreateTrainerService = {
         sucess: false,
         message: "Somente maiores de 15 e menores de 40 anos podem participar"
       }
-    }
+    }*/
 
-    if (city !== "Pallet" && city !== "Vermelion") {
-      return {
-        sucess: false,
-        message: "Somente moradores de Pallet e Vermelion podem participar"
-      }
-    } */
-
-    const newTrainer = new TrainerModel(v4(), name, age, city)
+    const newTrainer = new TrainerModel(v4(), name, email, password, age, city)
 
     return {
       sucess: true,
