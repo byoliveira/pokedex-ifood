@@ -1,32 +1,31 @@
 const TrainerModel = require("../../models/trainer/TrainerModel")
 
-const TrainerModel = require("../../models/trainer/TrainerModel")
-
 const ListTrainerService = {
   listAll: () => {
     const trainers = [
-      new TrainerModel({
-        id: '5ed061a8-dacb-4b14-af79-7e7abea09b45',
-        name: "Daniel",
-        email: 'daniel@digitalhouse.com',
-        password: '123456',
-        age: 32,
-        city: "Pallet"
-      }),
+      new TrainerModel(
+        '5ed061a8-dacb-4b14-af79-7e7abea09b45',
+        "Daniel",
+        'daniel@digitalhouse.com',
+        '123456',
+        32,
+        "Pallet"
+      ),
+
       new TrainerModel(
         '5ed061a8-dacb-4b14-af79-7e7abea09b45',
         'Bruno',
         'boliveira@digitalhouse.com',
         '123456',
         25,
-        'Cariacica - ES'
-      )
+        'Cariacica'
+        ),
     ]
 
     return trainers
-  }, 
-  
-  findTrainer: (email, password) => {
+  },
+
+  FindTrainer: (email, password) => {
     const trainer = ListTrainerService.listAll().find(trainer => trainer.email === email && trainer.password === password)
 
     return trainer
