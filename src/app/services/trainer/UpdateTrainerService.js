@@ -1,4 +1,4 @@
-const ListTrainerService = require("./ListTrainerService")
+import ListTrainerService from "./ListTrainerService";
 
 const UpdateTrainerService = {
   update: (id, name, age, city) => {
@@ -49,4 +49,4 @@ const UpdateTrainerService = {
   }
 }
 
-module.exports = UpdateTrainerService
+export default UpdateTrainerService
