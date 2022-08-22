@@ -1,18 +1,18 @@
-const Router = require('express');
-const multer = require('multer');
-const multerConfig = require('./config/multer');
+import Router from 'express';
+import multer from 'multer';
+import multerConfig from './config/multer';
 
-const legendaryValidator = require('./middlewares/LegendaryValidator')
-const trainerValidator = require('./middlewares/TrainerValidator')
+import legendaryValidator from './middlewares/LegendaryValidator'
+import trainerValidator from './middlewares/TrainerValidator'
 
-const controller = require('./app/controllers/legendary/LegendaryController');
-const trainerController = require('./app/controllers/trainer/TrainerController')
-const uploadFileController = require('./app/controllers/utils/UploadFileController');
-const SessionController = require('./app/controllers/trainer/SessionController')
+import controller from './app/controllers/legendary/LegendaryController';
+import trainerController from './app/controllers/trainer/TrainerController'
+import uploadFileController from './app/controllers/utils/UploadFileController';
+import SessionController from './app/controllers/trainer/SessionController'
 
-const uploadFile = multer({ storage: multerConfig })
+ uploadFile = multer({ storage: multerConfig })
 
-const routes = new Router();
+ routes = new Router();
 
 //routes.get('/legendaries', controller.index);
 routes.get('/legendaries', controller.ListData);
@@ -27,4 +27,4 @@ routes.post('/uploads', uploadFile.single('file'), uploadFileController.storeFil
 routes.post('/session', SessionController.create);
 
 
-module.exports = routes;
+export default routes;
