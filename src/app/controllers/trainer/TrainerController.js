@@ -2,13 +2,16 @@ const CreateTrainerService = require("../../services/trainer/CreateTrainerServic
 const ListTrainerService = require("../../services/trainer/ListTrainerService")
 const UpdateTrainerService = require("../../services/trainer/UpdateTrainerService")
 
-const controller = {
-  listAll: (request, response) => {
+class TrainerController {
+  constructor() {}
+
+  listAll(request, response) {
     const trainers = ListTrainerService.listAll()
 
     return response.send(trainers)
-  },
-  create: (request, response) => {
+  }
+
+  create(request, response) {
     const {
       name,
       email,
@@ -36,8 +39,9 @@ const controller = {
     }
 
     return response.status(200).json(createdTrainer.message)
-  },
-  update: (request, response) => {
+  }
+
+  update(request, response) {
     const { id } = request.params
     const {
       name,
@@ -67,4 +71,4 @@ const controller = {
   }
 }
 
-module.exports = controller
+module.exports = TrainerController

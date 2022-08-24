@@ -4,7 +4,7 @@ import multerConfig from './config/multer';
 import legendaryValidator from './middlewares/LegendaryValidator';
 
 const controller = require('./app/controllers/legendary/LegendaryController');
-const trainerController = require('./app/controllers/trainer/TrainerController')
+const TrainerController = require('./app/controllers/trainer/TrainerController')
 const uploadFileController = require('./app/controllers/utils/UploadFileController');
 const SessionController = require('./app/controllers/auth/SessionController')
 
@@ -18,12 +18,14 @@ routes.post('/legendaries',legendaryValidator, controller.create);
 routes.put('/legendaries/:id', controller.update);
 routes.delete('/legendaries/:id', controller.delete);
 
+const trainerController = new TrainerController();
 
 routes.get('/trainers', trainerController.listAll);
 routes.post('/trainers', trainerController.create);
 routes.put('/trainers/:id', trainerController.update);
-routes.post('/uploads', uploadFile.single('file'), uploadFileController.storeFile);
-routes.post('/session', SessionController.create);
 
+routes.post('/uploads', uploadFile.single('file'), uploadFileController.storeFile);
+
+routes.post('/session', SessionController.create);
 
 export default routes;
