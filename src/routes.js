@@ -4,7 +4,11 @@ import multerConfig from './config/multer';
 import legendaryValidator from './middlewares/LegendaryValidator';
 
 const controller = require('./app/controllers/legendary/LegendaryController');
-const TrainerController = require('./app/controllers/trainer/TrainerController')
+
+const ListAllTrainersController = require('./app/controllers/trainer/ListAllTrainersController')
+const CreateTrainerController = require('./app/controllers/trainer/CreateTrainerController')
+const UpdateTrainerController = require('./app/controllers/trainer/UpdateTrainerController')
+
 const uploadFileController = require('./app/controllers/utils/UploadFileController');
 const SessionController = require('./app/controllers/auth/SessionController')
 
@@ -18,11 +22,13 @@ routes.post('/legendaries',legendaryValidator, controller.create);
 routes.put('/legendaries/:id', controller.update);
 routes.delete('/legendaries/:id', controller.delete);
 
-const trainerController = new TrainerController();
+const listAllTrainersController = new ListAllTrainersController();
+const createTrainerController = new CreateTrainerController();
+const updatedTrainerController = new UpdateTrainerController();
 
-routes.get('/trainers', trainerController.listAll);
-routes.post('/trainers', trainerController.create);
-routes.put('/trainers/:id', trainerController.update);
+routes.get('/trainers', listAllTrainersController.list);
+routes.post('/trainers', createTrainerController.create);
+routes.put('/trainers/:id', updatedTrainerController.update);
 
 routes.post('/uploads', uploadFile.single('file'), uploadFileController.storeFile);
 
