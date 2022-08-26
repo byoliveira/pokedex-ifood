@@ -1,52 +1,56 @@
 import ListTrainerService from "./ListTrainerService";
 
-const UpdateTrainerService = {
-  update: (id, name, age, city) => {
-    const trainers = ListTrainerService.listAll()
+export default class UpdateTrainerService {
+  constructor() {
+    this.service = new ListTrainerService();
+  }
 
-    const updateTrainer = trainers.find(trainer => trainer.id === id)
-    const updateTrainerIndex = trainers.findIndex(trainer => trainer.id === id)
+  update(id, name, age, city) {
+    const trainers = this.service.listAll();
+
+    const updateTrainer = trainers.find((trainer) => trainer.id === id);
+    const updateTrainerIndex = trainers.findIndex(
+      (trainer) => trainer.id === id
+    );
 
     if (!updateTrainer) {
       return {
         sucess: false,
-        message: "Treinador não encontrado"
-      }
+        message: "Treinador não encontrado",
+      };
     }
 
     if (name.length < 5) {
       return {
         sucess: false,
-        message: "Nome precisa ter pelo menos 5 caracteres"
-      }
+        message: "Nome precisa ter pelo menos 5 caracteres",
+      };
     }
 
     if (age < 15 || age >= 40) {
       return {
         sucess: false,
-        message: "Somente maiores de 15 e menores de 40 anos podem participar"
-      }
+        message: "Somente maiores de 15 e menores de 40 anos podem participar",
+      };
     }
 
     if (city !== "Pallet" && city !== "Vermelion") {
       return {
         sucess: false,
-        message: "Somente moradores de Pallet e Vermelion podem participar"
-      }
+        message: "Somente moradores de Pallet e Vermelion podem participar",
+      };
     }
 
     trainers[updateTrainerIndex] = {
       id,
       name,
       age,
-      city
-    }
+      city,
+    };
 
     return {
       sucess: true,
-      message: trainers[updateTrainerIndex]
-    }
+      message: trainers[updateTrainerIndex],
+    };
   }
 }
-
-export default UpdateTrainerService
