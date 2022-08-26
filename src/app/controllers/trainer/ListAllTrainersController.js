@@ -1,13 +1,13 @@
-const ListTrainerService = require("../../services/trainer/ListTrainerService")
+import ListTrainerService from "../../services/trainer/ListTrainerService";
 
-class ListAllTrainersController {
-  constructor() {}
+export default class ListAllTrainersController {
+  constructor() {
+    this.service = new ListTrainerService();
+  }
 
-  list(request, response) {
-    const trainers = ListTrainerService.listAll()
+  listAll(request, response) {
+    const trainers = this.service.listAll();
 
-    return response.send(trainers)
+    return response.send(trainers);
   }
 }
-
-export default ListAllTrainersController;
