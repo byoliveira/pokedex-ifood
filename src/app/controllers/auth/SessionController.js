@@ -1,13 +1,14 @@
-const jwt = require("jsonwebtoken");
-const ListTrainerService = require("../../services/trainer/ListTrainerService");
+import jwt from "jsonwebtoken";
+import ListTrainerService from "../../services/trainer/ListTrainerService";
 
-class SessionController {
+export default class SessionController {
   constructor() {}
 
   static create(request, response) {
     const { email, password } = request.body;
 
-    const trainer = ListTrainerService.FindTrainer(email, password);
+    const service = new ListTrainerService();
+    const trainer = service.listOne(email, password);
 
     if (!trainer) {
       return response.status(401).json({ error: "Trainer not found" });
@@ -26,6 +27,4 @@ class SessionController {
       }),
     });
   }
-};
-
-module.exports = SessionController;
+}
